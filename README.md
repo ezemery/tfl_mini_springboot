@@ -4,6 +4,7 @@
 
 This project is a simplified version of the Transport for London (TfL) system, designed to simulate the London Transportation Network. It provides an API to manage transportation cards, track trips, and calculate fares based on stations and zones.
 
+![TFL image](./tfl.drawio.png)
 ## Table of Contents
 
 - [Overview](#overview)
