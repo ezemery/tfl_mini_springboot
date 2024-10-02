@@ -1,10 +1,18 @@
 package com.ezechukwu.tfl.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "charge")
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Charge {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,54 +29,4 @@ public class Charge {
     @JoinColumn(name="card")
     private Card card;
 
-    public Charge() {
-    }
-
-    public Charge(Double amount, Trip trip, Card card) {
-        this.amount = amount;
-        this.trip = trip;
-        this.card = card;
-        this.isCharged = false;
-    }
-
-    public Integer getChargeId() {
-        return chargeId;
-    }
-
-    public void setChargeId(Integer chargeId) {
-        this.chargeId = chargeId;
-    }
-
-
-    public Double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public Trip getTrip() {
-        return trip;
-    }
-
-    public void setTrip(Trip trip) {
-        this.trip = trip;
-    }
-
-    public Card getCard() {
-        return card;
-    }
-
-    public void setCard(Card card) {
-        this.card = card;
-    }
-
-    public Boolean getCharged() {
-        return isCharged;
-    }
-
-    public void setCharged(Boolean isCharged) {
-        this.isCharged = isCharged;
-    }
 }

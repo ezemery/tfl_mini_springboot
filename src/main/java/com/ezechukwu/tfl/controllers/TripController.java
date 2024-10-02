@@ -1,9 +1,9 @@
 package com.ezechukwu.tfl.controllers;
 
-import com.ezechukwu.tfl.records.TripCheckInRecord;
-import com.ezechukwu.tfl.records.TripCheckInRequest;
-import com.ezechukwu.tfl.records.TripCheckOutRecord;
-import com.ezechukwu.tfl.records.TripCheckOutRequest;
+import com.ezechukwu.tfl.dto.response.TripCheckInResponse;
+import com.ezechukwu.tfl.dto.request.TripCheckInRequest;
+import com.ezechukwu.tfl.dto.response.TripCheckOutResponse;
+import com.ezechukwu.tfl.dto.request.TripCheckOutRequest;
 import com.ezechukwu.tfl.services.TripService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,12 @@ public class TripController {
     @Autowired
     private TripService tripService;
     @PostMapping(value = "/checkin")
-    public TripCheckInRecord fundCustomer(@RequestBody @Valid TripCheckInRequest tripCheckInRequest) {
+    public TripCheckInResponse fundCustomer(@RequestBody @Valid TripCheckInRequest tripCheckInRequest) {
         return tripService.checkin(tripCheckInRequest);
     }
 
     @PostMapping(value = "/checkout")
-    public TripCheckOutRecord fundCustomer(@RequestBody @Valid TripCheckOutRequest tripCheckInRequest) {
+    public TripCheckOutResponse fundCustomer(@RequestBody @Valid TripCheckOutRequest tripCheckInRequest) {
         return tripService.checkout(tripCheckInRequest);
     }
 

@@ -1,9 +1,8 @@
 package com.ezechukwu.tfl.controllers;
 
-import com.ezechukwu.tfl.controllers.CardController;
-import com.ezechukwu.tfl.records.CardAndWalletRecord;
-import com.ezechukwu.tfl.records.CardRecord;
-import com.ezechukwu.tfl.services.CardService;
+import com.ezechukwu.tfl.dto.response.CardAndWalletResponse;
+import com.ezechukwu.tfl.dto.response.CardResponse;
+import com.ezechukwu.tfl.services.impl.CardServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -22,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class CardControllerTest {
 
     @Mock
-    private CardService cardService;
+    private CardServiceImpl cardService;
 
     @InjectMocks
     private CardController cardController;
@@ -37,10 +36,10 @@ class CardControllerTest {
 
     @Test
     void testRegisterCard() throws Exception {
-        CardRecord cardRecord = new CardRecord(null, "Card Name", "Type", "Token");
-        CardAndWalletRecord response = new CardAndWalletRecord(1, "Card Name", "Type", "Token", null);
+        CardResponse cardRecord = new CardResponse(null, "Card Name", "Type", "Token");
+        CardAndWalletResponse response = new CardAndWalletResponse(1, "Card Name", "Type", "Token", null);
 
-        when(cardService.registerCard(any(CardRecord.class))).thenReturn(response);
+        when(cardService.registerCard(any(CardResponse.class))).thenReturn(response);
 
         mockMvc.perform(post("/api/v1/card/create")
                         .contentType("application/json")
@@ -51,7 +50,7 @@ class CardControllerTest {
 
     @Test
     void testGetCardById() throws Exception {
-        CardAndWalletRecord response = new CardAndWalletRecord(1, "Card Name", "Type", "Token", null);
+        CardAndWalletResponse response = new CardAndWalletResponse(1, "Card Name", "Type", "Token", null);
 
         when(cardService.getCardById(1)).thenReturn(response);
 

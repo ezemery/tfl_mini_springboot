@@ -3,11 +3,11 @@ package com.ezechukwu.tfl.services;
 import com.ezechukwu.tfl.exception.NotFoundException;
 import com.ezechukwu.tfl.models.Card;
 import com.ezechukwu.tfl.models.Wallet;
-import com.ezechukwu.tfl.records.CardAndWalletRecord;
-import com.ezechukwu.tfl.records.CardRecord;
+import com.ezechukwu.tfl.dto.response.CardAndWalletResponse;
+import com.ezechukwu.tfl.dto.response.CardResponse;
 import com.ezechukwu.tfl.repositories.CardRepository;
 import com.ezechukwu.tfl.repositories.WalletRepository;
-import com.ezechukwu.tfl.services.CardService;
+import com.ezechukwu.tfl.services.impl.CardServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -28,7 +28,7 @@ class CardServiceTest {
     private WalletRepository walletRepository;
 
     @InjectMocks
-    private CardService cardService;
+    private CardServiceImpl cardService;
 
     @BeforeEach
     void setUp() {
@@ -37,25 +37,34 @@ class CardServiceTest {
 
     @Test
     void testRegisterCard() {
-        CardRecord cardRecord = new CardRecord(null, "Card Name", "Type", "Token");
+        CardResponse cardRecord = new CardResponse(null, "Card Name", "Type", "Token");
 
-        Card card = new Card("Card Name", "Type", "Token");
+        Card card = Card.builder()
+                .cardName("Card Name")
+                .cardToken("Token")
+                .cardType("Type")
+                .build();
         Wallet wallet = new Wallet();
         card.setWallet(wallet);
 
         when(cardRepository.save(any(Card.class))).thenReturn(card);
 
-        CardAndWalletRecord result = cardService.registerCard(cardRecord);
+        CardAndWalletResponse result = cardService.registerCard(cardRecord);
 
         assertNotNull(result);
-        assertEquals("Card Name", result.card_name());
-        assertEquals("Type", result.car_type());
-        assertNotNull(result.wallet());
+        assertEquals("Card Name", result.getCardName());
+        assertEquals("Type", result.getCardType());
+        assertNotNull(result.getWallet());
     }
 
     @Test
     void testGetCardById_CardExists() {
-        Card card = new Card("Card Name", "Type", "Token");
+        Card card = Card.builder()
+                .cardName("Card Name")
+                .cardToken("Token")
+                .cardType("Type")
+                .build();
+
         card.setCardId(1);
         Wallet wallet = new Wallet();
         wallet.setWalletId(1);
@@ -63,13 +72,13 @@ class CardServiceTest {
 
         when(cardRepository.findById(1)).thenReturn(Optional.of(card));
 
-        CardAndWalletRecord result = cardService.getCardById(1);
+        CardAndWalletResponse result = cardService.getCardById(1);
 
         assertNotNull(result);
-        assertEquals(1, result.id());
-        assertEquals("Card Name", result.card_name());
-        assertEquals("Type", result.car_type());
-        assertNotNull(result.wallet());
+        assertEquals(1, result.getId());
+        assertEquals("Card Name", result.getCardName());
+        assertEquals("Type", result.getCardType());
+        assertNotNull(result.getWallet());
     }
 
     @Test

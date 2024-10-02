@@ -1,12 +1,20 @@
 package com.ezechukwu.tfl.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "zone")
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Zone {
     @Id
     @GeneratedValue
@@ -15,38 +23,4 @@ public class Zone {
     @ManyToOne
     @JoinColumn(name="station_point_id")
     private StationPoint stationPoint;
-
-    public Zone() {
-    }
-
-    public Zone(Integer zoneId, Integer zoneNumber, StationPoint stationPoint) {
-        this.zoneId = zoneId;
-        this.zoneNumber = zoneNumber;
-        this.stationPoint = stationPoint;
-    }
-
-    public Integer getZoneId() {
-        return zoneId;
-    }
-
-    public void setZoneId(Integer zoneId) {
-        this.zoneId = zoneId;
-    }
-
-    public Integer getZoneNumber() {
-        return zoneNumber;
-    }
-
-    public void setZoneNumber(Integer zoneNumber) {
-        this.zoneNumber = zoneNumber;
-    }
-
-    public StationPoint getZoneStations() {
-        return stationPoint;
-    }
-
-    public void setZoneStations(StationPoint zoneStations) {
-        this.stationPoint = stationPoint;
-    }
-
 }

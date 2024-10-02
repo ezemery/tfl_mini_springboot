@@ -3,13 +3,18 @@ package com.ezechukwu.tfl.models;
 import com.ezechukwu.tfl.models.Card;
 import com.ezechukwu.tfl.models.Wallet;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CardTest {
 
     @Test
     void testCardProperties() {
-        Card card = new Card("Card Name", "Type", "Token");
+        Card card = Card.builder()
+                .cardName("Card Name")
+                .cardToken("Token")
+                .cardType("Type")
+                .build();
 
         assertEquals("Card Name", card.getCardName());
         assertEquals("Type", card.getCardType());
@@ -23,10 +28,20 @@ class CardTest {
 
     @Test
     void testCardEqualsAndHashcode() {
-        Card card1 = new Card("Card Name", "Type", "Token");
+        Card card1 = Card.builder()
+                .cardName("Card Name")
+                .cardToken("Token")
+                .cardType("Type")
+                .build();
+        ;
         card1.setCardId(1);
 
-        Card card2 = new Card("Card Name", "Type", "Token");
+        Card card2 = Card.builder()
+                .cardName("Card Name")
+                .cardToken("Token")
+                .cardType("Type")
+                .build();
+
         card2.setCardId(1);
 
         assertEquals(card1, card2);

@@ -1,12 +1,20 @@
 package com.ezechukwu.tfl.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "station")
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Station {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,56 +30,4 @@ public class Station {
             inverseJoinColumns = @JoinColumn(name="transportId")
     )
     private Set<Transport> stationTransport;
-
-    public Station() {
-    }
-
-    public Station(Integer stationId, String stationName, List<StationPoint> stationPoint, Set<Transport> stationTransport) {
-        this.stationId = stationId;
-        this.stationName = stationName;
-        this.stationPoint = stationPoint;
-        this.stationTransport = stationTransport;
-    }
-
-    public Integer getStationId() {
-        return stationId;
-    }
-
-    public void setStationId(Integer stationId) {
-        this.stationId = stationId;
-    }
-
-    public String getStationName() {
-        return stationName;
-    }
-
-    public void setStationName(String stationName) {
-        this.stationName = stationName;
-    }
-
-    public List<StationPoint> getStationPoint() {
-        return stationPoint;
-    }
-
-    public void setStationPoint(List<StationPoint> stationPoint) {
-        this.stationPoint = stationPoint;
-    }
-
-    public Set<Transport> getStationTransport() {
-        return stationTransport;
-    }
-
-    public void setStationTransport(Set<Transport> stationTransport) {
-        this.stationTransport = stationTransport;
-    }
-
-    @Override
-    public String toString() {
-        return "Station{" +
-                "stationId=" + stationId +
-                ", stationName='" + stationName + '\'' +
-                ", stationPoint=" + stationPoint +
-                ", stationTransport=" + stationTransport +
-                '}';
-    }
 }

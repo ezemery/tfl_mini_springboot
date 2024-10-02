@@ -1,7 +1,7 @@
 package com.ezechukwu.tfl.controllers;
 
-import com.ezechukwu.tfl.records.CardAndWalletRecord;
-import com.ezechukwu.tfl.records.ChargeRecord;
+import com.ezechukwu.tfl.dto.response.CardAndWalletResponse;
+import com.ezechukwu.tfl.dto.response.ChargeResponse;
 import com.ezechukwu.tfl.services.ChargeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class ChargeController {
     @Autowired
     private ChargeService chargeService;
     @PostMapping(value = "/card")
-    public CardAndWalletRecord chargeCard(@RequestBody @Valid ChargeRecord chargeCard) {
+    public CardAndWalletResponse chargeCard(@RequestBody @Valid ChargeResponse chargeCard) {
         return chargeService.chargeCard(chargeCard);
     }
 }
