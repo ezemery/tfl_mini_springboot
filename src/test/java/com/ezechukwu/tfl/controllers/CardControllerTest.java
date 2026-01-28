@@ -2,15 +2,12 @@ package com.ezechukwu.tfl.controllers;
 
 import com.ezechukwu.tfl.dto.response.CardAndWalletResponse;
 import com.ezechukwu.tfl.dto.response.CardResponse;
-import com.ezechukwu.tfl.services.impl.CardServiceImpl;
-import org.junit.jupiter.api.BeforeEach;
+import com.ezechukwu.tfl.services.CardService;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -20,19 +17,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CardController.class)
 class CardControllerTest {
 
-    @Mock
-    private CardServiceImpl cardService;
-
-    @InjectMocks
-    private CardController cardController;
-
+    @Autowired
     private MockMvc mockMvc;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(cardController).build();
-    }
+    @MockBean
+    private CardService cardService;
 
     @Test
     void testRegisterCard() throws Exception {
@@ -43,9 +32,9 @@ class CardControllerTest {
 
         mockMvc.perform(post("/api/v1/card/create")
                         .contentType("application/json")
-                        .content("{\"card_name\": \"Card Name\", \"card_type\": \"Type\", \"card_token\": \"Token\"}"))
+                        .content("{\"cardName\": \"Card Name\", \"cardType\": \"Type\", \"cardToken\": \"Token\"}"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.card_name").value("Card Name"));
+                .andExpect(jsonPath("$.cardName").value("Card Name"));
     }
 
     @Test
@@ -56,6 +45,6 @@ class CardControllerTest {
 
         mockMvc.perform(get("/api/v1/card/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.card_name").value("Card Name"));
+                .andExpect(jsonPath("$.cardName").value("Card Name"));
     }
 }
