@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: tfl-app
+  repository: ghcr.io/ezemery/tfl_mini_springboot
   pullPolicy: IfNotPresent
   tag: "latest"
 

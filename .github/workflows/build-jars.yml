@@ -34,28 +34,3 @@ jobs:
 
       - name: Verify with Maven
         run: ./mvnw verify
-
-      - name: Build x86 JAR
-        if: github.event_name == 'pull_request' || github.event.inputs.architecture == 'x86' || github.event.inputs.architecture == 'both'
-        run: ./mvnw package -DskipTests
-        # Note: In a real scenario, you might use profiles or specific flags if the build output differs for architectures.
-        # For standard Spring Boot JARs, the bytecode is platform-independent, but this demonstrates the logic.
-
-      - name: Upload x86 Artifact
-        if: github.event_name == 'pull_request' || github.event.inputs.architecture == 'x86' || github.event.inputs.architecture == 'both'
-        uses: actions/upload-artifact@v4
-        with:
-          name: tfl-app-x86
-          path: target/*.jar
-
-      - name: Build ARM JAR
-        if: github.event_name == 'pull_request' || github.event.inputs.architecture == 'arm' || github.event.inputs.architecture == 'both'
-        run: ./mvnw package -DskipTests
-        # Similar to x86 build, adjusted if there were architecture-specific dependencies or properties.
-
-      - name: Upload ARM Artifact
-        if: github.event_name == 'pull_request' || github.event.inputs.architecture == 'arm' || github.event.inputs.architecture == 'both'
-        uses: actions/upload-artifact@v4
-        with:
-          name: tfl-app-arm
-          path: target/*.jar
