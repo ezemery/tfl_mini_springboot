@@ -1,7 +1,7 @@
 package com.ezechukwu.tfl.services;
 
-import com.ezechukwu.tfl.dto.response.CardFundResponse;
+import com.ezechukwu.tfl.dto.request.CardFundRequest;
 
 public interface WalletService {
-    CardFundResponse fundCustomer(CardFundResponse cardFundRequest);
+    CardFundRequest fundCustomer(CardFundRequest cardFundRequest);
 }

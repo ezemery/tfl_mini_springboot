@@ -1,14 +1,14 @@
 package com.ezechukwu.tfl.utils;
 
 import com.ezechukwu.tfl.dto.response.CardAndWalletResponse;
-import com.ezechukwu.tfl.dto.response.WalletResponse;
+import com.ezechukwu.tfl.dto.request.WalletRequest;
 import com.ezechukwu.tfl.models.Card;
 
 import java.util.Optional;
 
 public class Utils {
     public static CardAndWalletResponse getCardWalletResponse(Optional<Card> card ){
-        WalletResponse walletResponse = WalletResponse.builder()
+        WalletRequest walletResponse = WalletRequest.builder()
                 .id(card.get().getWallet().getWalletId())
                 .amount(card.get().getWallet().getAvailableBalance())
                 .build();
@@ -23,7 +23,7 @@ public class Utils {
     }
 
     public static CardAndWalletResponse getCardWalletResponse(Card card ){
-        WalletResponse walletResponse = WalletResponse.builder()
+        WalletRequest walletResponse = WalletRequest.builder()
                 .id(card.getWallet().getWalletId())
                 .amount(card.getWallet().getAvailableBalance())
                 .build();

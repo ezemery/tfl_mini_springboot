@@ -1,5 +1,6 @@
 package com.ezechukwu.tfl.dto.response;
 
+import com.ezechukwu.tfl.dto.request.WalletRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +16,5 @@ public class CardAndWalletResponse {
     private String cardName;
     private String cardType;
     private String cardToken;
-    private WalletResponse wallet;
+    private WalletRequest wallet;
 }
