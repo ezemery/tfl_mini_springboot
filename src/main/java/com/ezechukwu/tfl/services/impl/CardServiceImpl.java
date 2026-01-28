@@ -5,7 +5,6 @@ import com.ezechukwu.tfl.models.Card;
 import com.ezechukwu.tfl.models.Wallet;
 import com.ezechukwu.tfl.dto.response.CardAndWalletResponse;
 import com.ezechukwu.tfl.dto.response.CardResponse;
-import com.ezechukwu.tfl.dto.response.WalletResponse;
 import com.ezechukwu.tfl.repositories.CardRepository;
 import com.ezechukwu.tfl.repositories.WalletRepository;
 import com.ezechukwu.tfl.services.CardService;
@@ -30,7 +29,10 @@ public class CardServiceImpl implements CardService {
                 .cardToken(request.getCardToken())
                 .cardType(request.getCardType())
                 .build();
-        Wallet newWallet = new Wallet();
+        Wallet newWallet = Wallet.builder()
+                .availableBalance(0.0)
+                .bookBalance(0.0)
+                .build();
         newWallet.setCard(newCard);
         newCard.setWallet(newWallet);
         Card card = cardRepository.save(newCard);

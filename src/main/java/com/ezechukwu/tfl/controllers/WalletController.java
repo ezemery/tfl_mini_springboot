@@ -1,6 +1,6 @@
 package com.ezechukwu.tfl.controllers;
 
-import com.ezechukwu.tfl.dto.response.CardFundResponse;
+import com.ezechukwu.tfl.dto.request.CardFundRequest;
 import com.ezechukwu.tfl.services.WalletService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class WalletController {
     @Autowired
     private WalletService walletService;
     @PostMapping(value = "/fund")
-    public CardFundResponse fundCustomer(@RequestBody @Valid CardFundResponse customerFundRequest) {
+    public CardFundRequest fundCustomer(@RequestBody @Valid CardFundRequest customerFundRequest) {
         return walletService.fundCustomer(customerFundRequest);
     }
 }

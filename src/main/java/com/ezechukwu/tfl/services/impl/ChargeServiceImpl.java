@@ -5,7 +5,6 @@ import com.ezechukwu.tfl.models.Card;
 import com.ezechukwu.tfl.models.Charge;
 import com.ezechukwu.tfl.dto.response.CardAndWalletResponse;
 import com.ezechukwu.tfl.dto.response.ChargeResponse;
-import com.ezechukwu.tfl.dto.response.WalletResponse;
 import com.ezechukwu.tfl.repositories.CardRepository;
 import com.ezechukwu.tfl.repositories.ChargeRepository;
 import com.ezechukwu.tfl.services.ChargeService;

@@ -1,4 +1,4 @@
-package com.ezechukwu.tfl.dto.response;
+package com.ezechukwu.tfl.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class WalletResponse {
+public class WalletRequest {
     private Integer id;
     private Double amount;
 }
